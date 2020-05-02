@@ -1,0 +1,46 @@
+def input_array(len):
+    output = list()
+    for i in range(int(len)):
+        output.append(int(input(' > ')))
+    return output
+
+def linear_search(arr, num):
+    steps = 0
+    for i in range(len(arr)):
+        steps += 1
+        if (arr[i] == num):
+            print(f'Linear search -> Index: {i}, Steps: {steps}')
+            return
+
+    print(f'Linear search -> Index: NONE, Steps: {steps}')
+    return
+
+def binary_search(arr, num):
+    steps = 0
+    min = 0
+    max = len(arr) - 1
+
+    while True:
+        mid = int((min + max) / 2)
+        steps += 1
+
+        if (arr[mid] == num):
+            print(f'Binary search -> Index: {mid}, Steps: {steps}')
+            return
+        if (arr[mid] > num):
+            max = mid - 1
+        else:
+            min = mid + 1
+
+        if (min > max):
+            break
+
+    print(f'Binary search -> Index: NONE, Steps: {steps}')
+    return
+
+
+arr = input_array(input('Array lenght: '))
+arr.sort()
+num = int(input('Enter number to find: '))
+linear_search(arr, num)
+binary_search(arr, num)
