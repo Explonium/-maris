@@ -1,0 +1,79 @@
+package chapter1.java;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Алексей
+ */
+public class Chapter1Java {
+
+    public static Scanner input = new Scanner(System.in);
+    
+    public static int[] input_array(int len){
+        int output[] = new int[len];
+        for (int i = 0; i < len; i++){
+            output[i] = input.nextInt();
+        }
+        return output;
+    }
+    
+    public static void linear_search(int num, int[] arr)
+    {
+        int steps = 0;
+        for (int i = 0; i < arr.length; i++)
+        {
+            steps += 1;
+            if (arr[i] == num)
+            {
+                System.out.println("Linear search - Index: " + i + "; Steps: " + steps);
+                return;
+            }
+        }
+
+        System.out.println("Linear search - Index: NONE; Steps: " + steps);
+        return;
+    }
+
+    public static void binary_search(int num, int[] arr)
+    {
+        int steps = 0;
+        int min = 0;
+        int max = arr.length - 1;
+
+        do {
+            int mid = (min + max) / 2;
+            steps += 1;
+
+            if (arr[mid] == num)
+            {
+                System.out.println("Binary search - Index: " + mid + "; Steps: " + steps);
+                return;
+            }
+
+            if (arr[mid] > num)
+                max = mid - 1;
+            else
+                min = mid + 1;
+
+        } while (min <= max);
+
+        System.out.println("Binary search - Index: NONE; Steps: " + steps);
+        return;
+    }
+    
+    public static void main(String[] args) {
+        System.out.print("Enter array lenght and an array: ");
+        int len = input.nextInt();
+        int arr[] = input_array(len);
+        Arrays.sort(arr);
+        
+        System.out.print("Enter a number to find: ");
+        int num = input.nextInt();
+        
+        linear_search(num, arr);
+        binary_search(num, arr);
+        
+    }
+}
